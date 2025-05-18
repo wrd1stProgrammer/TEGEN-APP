@@ -1,4 +1,9 @@
-import React, { useEffect, useMemo, useState, useCallback } from 'react';
+import React, {
+  useEffect,
+  useMemo,
+  useState,
+  useCallback,
+} from 'react';
 import {
   SafeAreaView,
   View,
@@ -14,6 +19,8 @@ import { RootState } from '../../redux/config/store';
 import { useAppDispatch } from '../../redux/config/reduxHook';
 import { fetchMonthRecords } from '../../redux/actions/carbonAction';
 import { CarbonRecord } from '../../redux/reducers/carbonSlice';
+import { Logout } from '../../redux/actions/userAction';
+import { useFocusEffect } from '@react-navigation/native';
 
 /* ───────────── 달력 한 칸 컴포넌트 ───────────── */
 const CELL = 46;
@@ -52,12 +59,23 @@ const ThirdScreen: React.FC = () => {
   const [month, setMonth] = useState<number>(today.getMonth() + 1); // 1~12
   const [selectedDay, setSelectedDay] = useState<number>(today.getDate());
 
-  /* ─ fetch when year/month changes ─ */
-  useEffect(() => {
+  /* ─ 서버 호출 함수 ─ */
+  const fetchData = useCallback(() => {
     dispatch(fetchMonthRecords(String(year), String(month).padStart(2, '0')));
-    // 선택된 날짜를 1일로 리셋 (월 넘어갈 때 index 에러 방지)
-    setSelectedDay(1);
-  }, [year, month]);
+  }, [dispatch, year, month]);
+
+  /* 연·월이 변할 때 */
+  useEffect(() => {
+    fetchData();
+    setSelectedDay(1); // 월 변경 시 선택일 초기화
+  }, [fetchData]);
+
+  /* 화면 포커스마다 새로고침 */
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [fetchData]),
+  );
 
   /* 달 변경 핸들러 */
   const changeMonth = useCallback(
@@ -79,7 +97,7 @@ const ThirdScreen: React.FC = () => {
   );
 
   /* 해당 월의 일 수 */
-  const daysInMonth = new Date(year, month, 0).getDate(); // 28~31
+  const daysInMonth = new Date(year, month, 0).getDate();
 
   /* 날짜별 집계 데이터 */
   const calendarData = useMemo(() => {
@@ -108,12 +126,23 @@ const ThirdScreen: React.FC = () => {
   const selectedData =
     calendarData.find((c) => c.day === selectedDay) ?? calendarData[0];
 
+  /* ───────────── 초기 전체 로딩 화면 ───────────── */
+  if (loading && monthRecords.length === 0) {
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.fullSpinner}>
+          <ActivityIndicator size="large" color="#3384FF" />
+        </View>
+      </SafeAreaView>
+    );
+  }
+
   /* ───────────── UI ───────────── */
   return (
     <SafeAreaView style={styles.safeArea}>
       {/* 월 네비게이터 */}
       <View style={styles.headerBar}>
-        <TouchableOpacity onPress={() => changeMonth('prev')}>
+        <TouchableOpacity onPress={Logout}>
           <Ionicons name="chevron-back" size={22} color="#2B2B2B" />
         </TouchableOpacity>
         <Text style={styles.headerMonth}>
@@ -181,6 +210,13 @@ export default ThirdScreen;
 /* ───────────── Styles ───────────── */
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: '#FFF' },
+
+  /* 초기 전체 로딩용 */
+  fullSpinner: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 
   headerBar: {
     flexDirection: 'row',
