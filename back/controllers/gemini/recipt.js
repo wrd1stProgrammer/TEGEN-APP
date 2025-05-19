@@ -7,7 +7,7 @@ const Mission              = require('../../models/Mission');
 
 const genAI    = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const textModel = genAI.getGenerativeModel({
-  model: 'gemini-1.5-flash',                 // 텍스트 전용
+  model: 'gemini-2.0-flash',                 // 텍스트 전용
   generationConfig: { responseMimeType: 'text/plain' },
 });
 
@@ -36,8 +36,8 @@ exports.analyzeReceipt = async (req, res) => {
 일회용 컵·플라스틱 포장 추가 시 +60 g
 
 # 규칙
-1. category 는 반드시 한국어, 매장/테이크아웃 구분.
-2. 수량·사이즈·포장 단서를 반영해 carbon_g 조정.
+1. category 는 반드시 한국어, 매장/테이크아웃 구분 가능하면 구분,어떤 상품인지 분석.
+2. 수량·사이즈·포장,가격,브랜드, 모든 단서를 총 반영해 해당 물품을 구매,사용하여 발생한 carbon_g 조정.
 3. 영수증 인식 실패 시 {"error":"UNREADABLE"} 만 반환.
 JSON 이외 어떠한 장식도 출력하지 마세요.
     `.trim();
@@ -70,9 +70,10 @@ ${JSON.stringify(parsed.items, null, 2)}
 ]
 
 # 규칙
-1. EASY → MEDIUM → HARD 순으로 난이도·절감량이 증가.
+0. 위 출력 형식 예시에 맞춰서 출력!
+1. EASY → MEDIUM → HARD 순으로 난이도·절감량이 증가. (단,영수증과 반드시 조금이라도 관련있는 내용이어야 함.)
 2. 미션은 입력 항목과 직접 연관된 행동이어야 함.
-3. expected_reduction_g 총합 ≥ ${parsed.total_co2_g}.
+3. expected_reduction_g 는 ${parsed.total_co2_g}와 비교하여 해당 미션을 한다면 얼마나 탄소저감을 할 수 있을지 수치로 표현(정확한 수치).
 4. 모든 텍스트는 한국어, 코드블록/설명은 금지.
     `.trim();
 
@@ -83,7 +84,7 @@ ${JSON.stringify(parsed.items, null, 2)}
     /* ---------- 3. DB 저장 ---------- */
     const receipt = await Receipt.create({
       user:       userId,
-      imageResponse,
+      imageUrl : imageResponse,
       ocrJson:    parsed.items,
       totalCarbon: parsed.total_co2_g,
     });

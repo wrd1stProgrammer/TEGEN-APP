@@ -134,6 +134,8 @@ const loginApi = async (req, res) => {
         userId: user.userId,
         userImage: user?.userImage,
         email: user.email,
+        carbonSaved_g: user.carbonSaved_g,
+        bearTemp: user.bearTemp,
       },
     });
   } catch (err) {

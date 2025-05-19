@@ -26,6 +26,8 @@ const getProfile = async (req, res) => {
         _id: user._id,
         userId: user.userId,
         email: user.email,
+        carbonSaved_g: user.carbonSaved_g,
+        bearTemp: user.bearTemp,
       }, // 임시로 4개만 뿌림.
     });
   } catch (error) {

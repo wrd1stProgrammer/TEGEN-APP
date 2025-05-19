@@ -6,7 +6,7 @@ const auth = require('../middlewares/authentication');
 const fileRouter = require("../routes/file");
 const carbonRouter = require("../routes/carbon");
 const geminiRouter = require("../routes/gemini");
-
+const missionRouter = require("../routes/mission");
 
 module.exports = async (app) => {
     const router = express.Router();
@@ -23,6 +23,8 @@ module.exports = async (app) => {
     app.use("/carbon",authMiddleware,carbonRouter);
 
     app.use("/gemini",authMiddleware,geminiRouter);
+
+    app.use("/mission",authMiddleware,missionRouter);
 
     
 
