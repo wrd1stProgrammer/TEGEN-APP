@@ -12,7 +12,7 @@ export default function FaceTestScreen() {
         style={styles.button}
         onPress={() => navigate('Result')}
       >
-        <Text style={styles.buttonText}>AI 얼굴 테스트 시작</Text>
+        <Text style={styles.buttonText}>AI 얼굴상 테스트 시작</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.button, { backgroundColor: '#232323' }]}
