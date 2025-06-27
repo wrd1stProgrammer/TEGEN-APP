@@ -21,7 +21,7 @@ const App:React.FC = () => {
       </Provider>
 
     </GestureHandlerRootView>
-  );
+  ); 
 };
 
 const styles = StyleSheet.create({

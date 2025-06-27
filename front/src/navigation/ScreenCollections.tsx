@@ -6,6 +6,11 @@ import RegisteryScreen from "../screens/auth/RegisteryScreen";
 import PatientHome from "../screens/MainScreen/PatientHome";
 import SecondScreen from "../screens/MainScreen/SecondScreen";
 import ThirdScreen from "../screens/MainScreen/ThirdScreen";
+import FaceTestScreen from "../screens/survey/FaceTestScreen";
+import GenderScreen from "../screens/survey/GenderScreen";
+import ResultScreen from "../screens/survey/ResultScreen";
+import SurveyScreen from "../screens/survey/SurveyScreen";
+import WelcomeScreen from "../screens/survey/WelcomeScreen";
 
 // ++ Screen Type ??
 
@@ -26,6 +31,32 @@ export const authStack = [
 
 ];
 
+export const surveyStack = [
+    {
+        name: "Face",
+        component: FaceTestScreen,
+    },
+    {
+        name: "Gender",
+        component: GenderScreen,
+    },
+    {
+        name: "Result",
+        component: ResultScreen,
+    },
+    {
+        name: "Survey",
+        component: SurveyScreen,
+    },
+    {
+        name: "Welcome",
+        component: WelcomeScreen,
+    },
+
+
+];
+
+
 export const dashboardStack = [
     {
         name:"BottomTab",
@@ -43,8 +74,7 @@ export const dashboardStack = [
         name:"ThirdScreen",
         component: ThirdScreen,
     },
-
-    
+ 
 ];
 
-export const mergedStacks = [...dashboardStack, ...authStack];
+export const mergedStacks = [...dashboardStack, ...authStack, ...surveyStack];
