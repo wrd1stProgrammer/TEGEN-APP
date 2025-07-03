@@ -59,4 +59,4 @@ jobs:
             docker rmi -f ${{ secrets.DOCKER_HUB_USERNAME }}/tegen:latest || true
             docker-compose pull
             docker-compose up -d
-            echo "✅ Deployment finished"
+            echo "✅Deployment finished"
