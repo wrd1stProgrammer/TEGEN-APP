@@ -19,8 +19,9 @@
     </intent>
   </queries>
 
-  <application android:name=".MainApplication" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:allowBackup="false" android:theme="@style/AppTheme" android:supportsRtl="true">
+  <application android:name=".MainApplication" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:allowBackup="false" android:theme="@style/AppTheme" android:supportsRtl="true" android:usesCleartextTraffic="true">
         <!-- AdMob App ID 추가 -->
+        
     <meta-data 
       android:name="com.google.android.gms.ads.APPLICATION_ID" 
       android:value="ca-app-pub-9384938904470201~4649166727"
