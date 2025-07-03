@@ -22,11 +22,11 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/tegen:latest .
+          docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/tegen:latest .
 
       - name: Push Docker Image
         run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/tegen:latest
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/tegen:latest
 
   deploy:
     name: Deploy on EC2
