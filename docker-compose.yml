@@ -1,0 +1,20 @@
+version: '3'
+services:
+  back:
+    image: sikgates/tegen:latest  # ← 최신 Docker Hub 이미지
+    container_name: tegen-back
+    ports:
+      - "5001:5001"
+    environment:
+      - TZ=Etc/UTC
+      - REDIS_HOST=redis-14438.c281.us-east-1-2.ec2.redns.redis-cloud.com
+      - REDIS_PORT=14438
+      - REDIS_USERNAME=default
+      - REDIS_PASSWORD=AoWvAXv3JTPRBrgwxRX58G9AVxFhQzpj
+    networks:
+      - app_network
+    restart: always
+
+networks:
+  app_network:
+    driver: bridge
