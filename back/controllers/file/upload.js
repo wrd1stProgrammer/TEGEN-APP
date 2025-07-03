@@ -13,8 +13,8 @@ const uploadMedia = async (req, res) => {
     const mediaType = req.body.mediaType;
 //
     let folder;
-    if (mediaType === "qcr_image") {
-      folder = "qcr_image";
+    if (mediaType === "face_image") {
+      folder = "face_image";
     } else if (mediaType === "profile_image") {
       folder = "profile_image";
     } else if (mediaType === "patient_image"){

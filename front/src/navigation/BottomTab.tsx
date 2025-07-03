@@ -12,9 +12,9 @@ import {
   CameraOptions, ImageLibraryOptions, ImagePickerResponse,
 } from 'react-native-image-picker';
 
-import PatientHome from '../screens/MainScreen/PatientHome';
-import SecondScreen from '../screens/MainScreen/SecondScreen';
-import ThirdScreen  from '../screens/MainScreen/ThirdScreen';
+import PatientHome from '../screens/MainScreens/PatientHome';
+import SecondScreen from '../screens/MainScreens/SecondScreen';
+import ThirdScreen  from '../screens/MainScreens/ThirdScreen';
 import { useAppDispatch } from '../redux/config/reduxHook';
 import { uploadFile } from '../redux/actions/fileAction';
 import { geminiImageAction } from '../redux/actions/geminiAction';

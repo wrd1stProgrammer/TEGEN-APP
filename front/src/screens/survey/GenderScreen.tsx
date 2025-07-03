@@ -1,24 +1,27 @@
-// screens/GenderScreen.tsx
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { navigate,goBack } from '../../navigation/NavigationUtils';
-
+import { navigate, goBack } from '../../navigation/NavigationUtils';
+import { useAppSelector } from '../../redux/config/reduxHook';
+import { LangCode, translations } from '../../utils/translations';
 
 export default function GenderScreen() {
+  const lang = useAppSelector((state: any) => state.language.lang) as LangCode;
+  const { question, male, female } = translations.genderTranslations[lang];
+
   return (
     <View style={styles.container}>
-      <Text style={styles.question}>성별을 선택해 주세요</Text>
+      <Text style={styles.question}>{question}</Text>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigate('Survey', { gender: '남' })}
+        onPress={() => navigate('MediaSelectionScreen', { sex: '남' })}
       >
-        <Text style={styles.buttonText}>남자</Text>
+        <Text style={styles.buttonText}>{male}</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigate('Survey', { gender: '여' })}
+        onPress={() => navigate('MediaSelectionScreen', { sex: '여' })}
       >
-        <Text style={styles.buttonText}>여자</Text>
+        <Text style={styles.buttonText}>{female}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -27,7 +30,7 @@ export default function GenderScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff', // 흰색 배경
+    backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -36,6 +39,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#111',
     marginBottom: 48,
+    textAlign: 'center',
   },
   button: {
     backgroundColor: '#111',
@@ -45,7 +49,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   buttonText: {
-    color:'#fff', // 흰색 배경
+    color: '#fff',
     fontSize: 18,
     fontWeight: 'bold',
   },

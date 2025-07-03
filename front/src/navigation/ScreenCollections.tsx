@@ -3,14 +3,17 @@ import SplashScreen from "../screens/auth/SplashSceen";
 import LoginScreen from "../screens/auth/LoginScreen";
 import BottomTab from "./BottomTab";
 import RegisteryScreen from "../screens/auth/RegisteryScreen";
-import PatientHome from "../screens/MainScreen/PatientHome";
-import SecondScreen from "../screens/MainScreen/SecondScreen";
-import ThirdScreen from "../screens/MainScreen/ThirdScreen";
+import PatientHome from "../screens/MainScreens/PatientHome";
+import SecondScreen from "../screens/MainScreens/SecondScreen";
+import ThirdScreen from "../screens/MainScreens/ThirdScreen";
 import FaceTestScreen from "../screens/survey/FaceTestScreen";
 import GenderScreen from "../screens/survey/GenderScreen";
 import ResultScreen from "../screens/survey/ResultScreen";
 import SurveyScreen from "../screens/survey/SurveyScreen";
 import WelcomeScreen from "../screens/survey/WelcomeScreen";
+import MediaSelectionScreen from "../screens/faceAI/MediaSelectionScreen";
+import FaceResultScreen from "../screens/MainSceen/FaceResultScreen";
+import InfoScreen from "../screens/MainSceen/InfoScreen";
 
 // ++ Screen Type ??
 
@@ -52,6 +55,19 @@ export const surveyStack = [
         name: "Welcome",
         component: WelcomeScreen,
     },
+
+    {
+        name: "MediaSelectionScreen",
+        component: MediaSelectionScreen,
+    },
+    {
+        name: "FaceResultScreen",
+        component: FaceResultScreen
+    },
+    {
+        name: "InfoScreen",
+        component: InfoScreen,
+    }
 
 
 ];

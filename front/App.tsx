@@ -6,8 +6,14 @@ import { Provider } from 'react-redux';
 import { persistor, store } from "./src/redux/config/store"
 import { PersistGate } from "redux-persist/integration/react";
 import Navigation from './src/navigation/Navigation';
+import { initializeAdMob } from './src/screens/\bAdMob/ConfigureAdMob';
 
 const App:React.FC = () => {
+
+  useEffect(() => {
+    initializeAdMob();
+  },[]);
+
   return(
     <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar

@@ -15,7 +15,7 @@ async function startServer() {
 
   // 서버 리스닝 시작
   server
-    .listen(3000, () => {
+    .listen(5001, () => {
       console.log(`
       ################################################
       🛡️  서버 온 : ${app.get("port")} 🛡️

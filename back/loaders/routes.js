@@ -4,6 +4,7 @@ const authRouter = require("../routes/auth");
 const userRouter = require("../routes/user");
 const auth = require('../middlewares/authentication');
 const fileRouter = require("../routes/file");
+const geminiRouter = require("../routes/gemini");
 
 
 module.exports = async (app) => {
@@ -17,8 +18,11 @@ module.exports = async (app) => {
     
     app.use("/auth",authRouter);
     app.use("/user",authMiddleware,userRouter);
+    app.use("/gemini",geminiRouter);
+    app.use("/file",fileRouter);
 
     
 
+    
     console.log('라우트 OK');
 };

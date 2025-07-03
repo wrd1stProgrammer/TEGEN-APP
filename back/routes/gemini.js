@@ -1,11 +1,12 @@
 const express = require("express");
 const {
-  analyzeReceipt
-} = require("../controllers/gemini/recipt");
+  analyzeReceipt,
+  analyzeFace
+} = require("../controllers/gemini/analyzeFace");
 
 const router = express.Router();
 
-router.post("/recipt", analyzeReceipt);
+router.post("/analyzeface", analyzeFace);
 
 
 
