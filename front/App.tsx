@@ -1,18 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Platform } from 'react-native';
+import { StyleSheet, Text, View,Platform, AppState} from 'react-native';
 import React, { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Provider } from 'react-redux';
 import { persistor, store } from "./src/redux/config/store"
 import { PersistGate } from "redux-persist/integration/react";
 import Navigation from './src/navigation/Navigation';
-import { initializeAdMob } from './src/screens/\bAdMob/ConfigureAdMob';
+import { initializeAdMob } from './src/screens/AdMob/ConfigureAdMob';
+import { requestTrackingPermission } from 'react-native-tracking-transparency';
+import {request, PERMISSIONS} from 'react-native-permissions';
+
 
 const App:React.FC = () => {
 
+  const checkPermissionForIOS = async () => {
+    return await requestTrackingPermission();
+  }
+
   useEffect(() => {
+    const listener = AppState.addEventListener('change', (status) => {
+      if (Platform.OS === 'ios' && status === 'active') {
+        request(PERMISSIONS.IOS.APP_TRACKING_TRANSPARENCY)
+          .then((result) => console.warn(result))
+          .catch((error) => console.warn(error));
+      }
+    });
+
+    checkPermissionForIOS();
     initializeAdMob();
-  },[]);
+  
+
+    return () => {listener.remove()}
+  }, []);
+
 
   return(
     <GestureHandlerRootView style={{ flex: 1 }}>

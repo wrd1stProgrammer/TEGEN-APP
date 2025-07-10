@@ -31,13 +31,23 @@
     
     /* ── AdMob ─────────────────────────── */
     import {
+      AdEventType,
       RewardedAd,
       RewardedAdEventType,
     } from 'react-native-google-mobile-ads';
     
-    const AD_UNIT_IOS     = 'ca-app-pub-9384938904470201/3338318006';
+    const AD_UNIT_IOS = 'ca-app-pub-9384938904470201/3338318006';
     const AD_UNIT_ANDROID = 'ca-app-pub-9384938904470201/5264244396';
-    const adUnitId        = Platform.OS === 'ios' ? AD_UNIT_IOS : AD_UNIT_ANDROID;
+
+    // 테스트 광고 ID (iOS는 구글이 제공한 공식 테스트 ID 사용)
+    const AD_UNIT_TEST_IOS = 'ca-app-pub-3940256099942544/1712485313';
+    const AD_UNIT_TEST_ANDROID = 'ca-app-pub-3940256099942544/5224354917'; // 필요 시
+
+    // 개발(build - debug) ↔︎ 배포(build - release) 구분
+    const isProd = !__DEV__;
+    const adUnitId = Platform.OS === 'ios'
+  ? (isProd ? AD_UNIT_IOS : AD_UNIT_TEST_IOS)
+  : (isProd ? AD_UNIT_ANDROID : AD_UNIT_TEST_ANDROID);
     
     interface Props {
       route: { params: { sex: '남' | '여' } };
@@ -83,7 +93,14 @@
           RewardedAdEventType.EARNED_REWARD, () => {
             selectedImage && geminiCall(selectedImage);
           });
-        cleanupRef.current = () => { loadedLister(); rewardLister(); };
+
+        const errorLister = rewarded.addAdEventListener(
+          AdEventType.ERROR, () => {
+
+            selectedImage && geminiCall(selectedImage);
+          });
+        
+        cleanupRef.current = () => { loadedLister(); rewardLister(); errorLister();};
         rewarded.load();
       };
     

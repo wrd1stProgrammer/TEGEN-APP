@@ -102,7 +102,7 @@ export const translations = {
    faceResultTranslations: {
     
     ko: {
-      title: '나의 얼굴상 점수',
+      title: '나의 테겐상 점수',
       radarExplain: '※ 점수가 높을수록 테토 성향, 낮을수록 에겐 성향에 가까워요!',
       retry: '다시하기',
       share: '공유하기',

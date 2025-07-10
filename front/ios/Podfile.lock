@@ -1330,6 +1330,8 @@ PODS:
     - Yoga
   - react-native-safe-area-context (5.0.0):
     - React-Core
+  - react-native-tracking-transparency (0.1.2):
+    - React
   - react-native-view-shot (4.0.3):
     - DoubleConversion
     - glog
@@ -1687,6 +1689,8 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - RNPermissions (5.4.1):
+    - React-Core
   - RNReanimated (3.17.5):
     - DoubleConversion
     - glog
@@ -1924,6 +1928,7 @@ DEPENDENCIES:
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-mmkv (from `../node_modules/react-native-mmkv`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - react-native-tracking-transparency (from `../node_modules/react-native-tracking-transparency`)
   - react-native-view-shot (from `../node_modules/react-native-view-shot`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
@@ -1957,6 +1962,7 @@ DEPENDENCIES:
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNGoogleMobileAds (from `../node_modules/react-native-google-mobile-ads`)
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNShare (from `../node_modules/react-native-share`)
@@ -2066,6 +2072,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-mmkv"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-tracking-transparency:
+    :path: "../node_modules/react-native-tracking-transparency"
   react-native-view-shot:
     :path: "../node_modules/react-native-view-shot"
   React-nativeconfig:
@@ -2132,6 +2140,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNGoogleMobileAds:
     :path: "../node_modules/react-native-google-mobile-ads"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -2196,6 +2206,7 @@ SPEC CHECKSUMS:
   react-native-image-picker: 0c6c4e5b5d1913ede905b8b13cd572e22b1e6160
   react-native-mmkv: 7d0b6c2a79e73100b933f2947a9c8741d664e18b
   react-native-safe-area-context: ab7beb734b0f9f79f55ae144a6c946a6422f55d6
+  react-native-tracking-transparency: 25ff1ff866e338c137c818bdec20526bb05ffcc1
   react-native-view-shot: 8c2a4beffea24492167dc347fa29664d0f41fddf
   React-nativeconfig: f7ab6c152e780b99a8c17448f2d99cf5f69a2311
   React-NativeModulesApple: 70600f7edfc2c2a01e39ab13a20fd59f4c60df0b
@@ -2229,6 +2240,7 @@ SPEC CHECKSUMS:
   RNDateTimePicker: a793ed8822283f576dd0a205a0916c5098c2611f
   RNGestureHandler: d11cebb14e1e0e9fb857ded703fa018258989206
   RNGoogleMobileAds: edc3229118a713dfb2569e1d290ff3f5b5f83c6b
+  RNPermissions: 2c1c87019b01690c803ea523dd43f9e906e22be5
   RNReanimated: 74062a0f2dfeaa23d6380f04f99f2997366549b4
   RNScreens: b03d696c70cc5235ce4587fcc27ae1a93a48f98c
   RNShare: f61d19bd35768b51c94c26626509f4b1f47368c2
@@ -2237,6 +2249,6 @@ SPEC CHECKSUMS:
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: fcc198acd4a55599b3468cfb6ebc526baff5f06e
 
-PODFILE CHECKSUM: 2ac2b6bfaf80b1bf2ad33525d9dc9e631416c38a
+PODFILE CHECKSUM: 808580b1729c41e98f45d93bc20644ac9de16092
 
 COCOAPODS: 1.16.2
