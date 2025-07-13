@@ -76,6 +76,7 @@ Make each "desc" at least 15 characters long and write them in a humorous tone. 
 *Score 50 means neutral. Use Vision landmarks (mouth curve, eye openness, color tone) + gender rules above.*
 
 # OUTPUT FORMAT  🔴 JSON ONLY, EXACTLY 6 FIELDS  🔴
+# The 6 outputs must be translated according to ${lang}
 {
   "expression":   { "score": <int0-100>, "desc": "<min 15 chars>" },
   "face_shape":  { "score": <int>,      "desc": "<min 15 chars>" },
