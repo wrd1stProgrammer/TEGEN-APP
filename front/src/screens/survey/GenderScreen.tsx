@@ -1,8 +1,13 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { navigate, goBack } from '../../navigation/NavigationUtils';
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import { navigate } from '../../navigation/NavigationUtils';
 import { useAppSelector } from '../../redux/config/reduxHook';
 import { LangCode, translations } from '../../utils/translations';
+
+const { height: windowHeight } = Dimensions.get('window');
+const ICON_SIZE = windowHeight * 0.07; // 화면 높이의 10%를 아이콘 크기로
+const ROW_HEIGHT = windowHeight * 0.2; // 화면 높이의 30%를 버튼 행 높이로
 
 export default function GenderScreen() {
   const lang = useAppSelector((state: any) => state.language.lang) as LangCode;
@@ -11,18 +16,24 @@ export default function GenderScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.question}>{question}</Text>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigate('MediaSelectionScreen', { sex: '남' })}
-      >
-        <Text style={styles.buttonText}>{male}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigate('MediaSelectionScreen', { sex: '여' })}
-      >
-        <Text style={styles.buttonText}>{female}</Text>
-      </TouchableOpacity>
+
+      <View style={[styles.row, { height: ROW_HEIGHT }]}>
+        <TouchableOpacity
+          style={styles.iconButton}
+          onPress={() => navigate('MediaSelectionScreen', { sex: '남' })}
+        >
+          <Icon name="mars" size={ICON_SIZE} color="#3498db" />
+          <Text style={[styles.label, { color: '#3498db' }]}>{male}</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.iconButton}
+          onPress={() => navigate('MediaSelectionScreen', { sex: '여' })}
+        >
+          <Icon name="venus" size={ICON_SIZE} color="#e74c3c" />
+          <Text style={[styles.label, { color: '#e74c3c' }]}>{female}</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -33,24 +44,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 20,
   },
   question: {
-    fontSize: 22,
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#111',
-    marginBottom: 48,
+    marginBottom: 1,
     textAlign: 'center',
   },
-  button: {
-    backgroundColor: '#111',
-    borderRadius: 24,
-    paddingVertical: 16,
-    paddingHorizontal: 48,
-    marginBottom: 16,
+  row: {
+    width: '60%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
+  iconButton: {
+    alignItems: 'center',
+  },
+  label: {
+    marginTop: 8,
+    fontSize: 16,
+    fontWeight: '500',
   },
 });

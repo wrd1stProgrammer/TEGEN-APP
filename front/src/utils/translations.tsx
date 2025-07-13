@@ -7,7 +7,7 @@ export type LangCode = 'ko' | 'en' | 'ja' | 'zh' | 'vi';
 export const translations = {
   // GenderScreen 번역
   genderTranslations: {
-    ko: { question: '성별을 선택해 주세요', male: '남자', female: '여자' },
+    ko: { question: '성별을 선택해 주세요', male: '남자',    female: '여자' },
     en: { question: 'Please select your gender',   male: 'Male',  female: 'Female' },
     ja: { question: '性別を選択してください',      male: '男性',   female: '女性'   },
     zh: { question: '请选择您的性别',             male: '男',     female: '女'     },
@@ -31,6 +31,9 @@ export const translations = {
       cancelText: '취소',
       confirmText: '확인',
       errorText: '광고를 불러오지 못했습니다.',
+      // 로딩 메시지
+      loadingAdText: '광고 로드 중...',
+      loadingAnalysisText: 'AI 분석 중 (최대 10초 소요..)',
     },
     en: {
       title: 'Select a photo\nfor AI analysis',
@@ -47,6 +50,9 @@ export const translations = {
       cancelText: 'Cancel',
       confirmText: 'OK',
       errorText: 'Failed to load ad.',
+      // loading messages
+      loadingAdText: 'Loading ad...',
+      loadingAnalysisText: 'Analyzing AI (up to 10 seconds..)',
     },
     ja: {
       title: 'AI解析のために\n写真を選択してください',
@@ -63,6 +69,9 @@ export const translations = {
       cancelText: 'キャンセル',
       confirmText: 'OK',
       errorText: '広告を読み込めませんでした。',
+      // ローディング メッセージ
+      loadingAdText: '広告を読み込んでいます…',
+      loadingAnalysisText: 'AIを分析中（最大10秒かかります..）',
     },
     zh: {
       title: '请选择用于AI分析的照片',
@@ -79,6 +88,9 @@ export const translations = {
       cancelText: '取消',
       confirmText: '确定',
       errorText: '广告加载失败。',
+      // 加载 文本
+      loadingAdText: '广告加载中…',
+      loadingAnalysisText: 'AI分析中（最多10秒..）',
     },
     vi: {
       title: 'Chọn ảnh để phân tích AI',
@@ -95,12 +107,14 @@ export const translations = {
       cancelText: 'Hủy',
       confirmText: 'OK',
       errorText: 'Không tải được quảng cáo.',
+      // Tin nhắn tải
+      loadingAdText: 'Đang tải quảng cáo…',
+      loadingAnalysisText: 'Đang phân tích AI (tối đa 10 giây..)',
     },
   },
 
-   /* FaceResultScreen */
-   faceResultTranslations: {
-    
+  /* FaceResultScreen */
+  faceResultTranslations: {
     ko: {
       title: '나의 테겐상 점수',
       radarExplain: '※ 점수가 높을수록 테토 성향, 낮을수록 에겐 성향에 가까워요!',
@@ -110,126 +124,41 @@ export const translations = {
       cancel: '취소',
       confirm: '확인',
       sexSuffix: { male: '남', female: '녀' },
-
-      /* 축 라벨 */
       axes: {
-        expression: '표정',
-        face_shape: '얼굴형',
-        physiognomy: '관상',
-        style: '스타일',
-        atmosphere: '분위기',
+        expression: '표정', face_shape: '얼굴형', physiognomy: '관상', style: '스타일', atmosphere: '분위기',
       },
-      /* 레벨 라벨 */
       levels: {
-        teto: '테토',
-        semiTeto: '세미테토',
-        tegen: '테겐',
-        semiEgen: '세미에겐',
-        egen: '에겐',
+        teto: '테토', semiTeto: '세미테토', tegen: '테겐', semiEgen: '세미에겐', egen: '에겐',
       },
     },
-
     en: {
       title: 'My Face Score',
       radarExplain: '※ Higher score → Teto, lower → Egen',
-      retry: 'Retry',
-      share: 'Share',
-      retryConfirm: 'Retry? Current result will be lost.',
-      cancel: 'Cancel',
-      confirm: 'OK',
-      sexSuffix: { male: 'Boy', female: 'Girl' },   // → “Teto Boy / Teto Girl”
-
-      axes: {
-        expression: 'Expression',
-        face_shape: 'Face shape',
-        physiognomy: 'Physiognomy',
-        style: 'Style',
-        atmosphere: 'Mood',
-      },
-      levels: {
-        teto: 'Teto',
-        semiTeto: 'Semi-Teto',
-        tegen: 'Tegen',
-        semiEgen: 'Semi-Egen',
-        egen: 'Egen',
-      },
+      retry: 'Retry', share: 'Share', retryConfirm: 'Retry? Current result will be lost.',
+      cancel: 'Cancel', confirm: 'OK', sexSuffix: { male: 'Boy', female: 'Girl' },
+      axes: { expression: 'Expression', face_shape: 'Face shape', physiognomy: 'Physiognomy', style: 'Style', atmosphere: 'Mood' },
+      levels: { teto: 'Teto', semiTeto: 'Semi-Teto', tegen: 'Tegen', semiEgen: 'Semi-Egen', egen: 'Egen' },
     },
-
     ja: {
-      title: '私の顔スコア',
-      radarExplain: '※ スコアが高いほどテト傾向、低いほどエゲン傾向',
-      retry: '再試行',
-      share: '共有',
-      retryConfirm: '再試行しますか？ 現在の結果は削除されます。',
-      cancel: 'キャンセル',
-      confirm: 'OK',
-      sexSuffix: { male: '男子', female: '女子' },  // → “テト男子” 등
-
-      axes: {
-        expression: '表情',
-        face_shape: '顔形',
-        physiognomy: '観相',
-        style: 'スタイル',
-        atmosphere: '雰囲気',
-      },
-      levels: {
-        teto: 'テト',
-        semiTeto: 'セミテト',
-        tegen: 'テゲン',
-        semiEgen: 'セミエゲン',
-        egen: 'エゲン',
-      },
+      title: '私の顔スコア', radarExplain: '※ スコアが高いほどテト傾向、低いほどエゲン傾向',
+      retry: '再試行', share: '共有', retryConfirm: '再試行しますか？ 現在の結果は削除されます。',
+      cancel: 'キャンセル', confirm: 'OK', sexSuffix: { male: '男子', female: '女子' },
+      axes: { expression: '表情', face_shape: '顔形', physiognomy: '観相', style: 'スタイル', atmosphere: '雰囲気' },
+      levels: { teto: 'テト', semiTeto: 'セミテト', tegen: 'テゲン', semiEgen: 'セミエゲン', egen: 'エゲン' },
     },
-
     zh: {
-      title: '我的面部评分',
-      radarExplain: '※ 分数越高越趋向 Teto，越低越趋向 Egen',
-      retry: '重试',
-      share: '分享',
-      retryConfirm: '确定重试？ 当前结果将被删除。',
-      cancel: '取消',
-      confirm: '确定',
-      sexSuffix: { male: '男', female: '女' },
-
-      axes: {
-        expression: '表情',
-        face_shape: '脸型',
-        physiognomy: '相学',
-        style: '风格',
-        atmosphere: '氛围',
-      },
-      levels: {
-        teto: 'Teto',
-        semiTeto: '半-Teto',
-        tegen: 'Tegen',
-        semiEgen: '半-Egen',
-        egen: 'Egen',
-      },
+      title: '我的面部评分', radarExplain: '※ 分数越高越趋向 Teto，越低越趋向 Egen',
+      retry: '重试', share: '分享', retryConfirm: '确定重试？ 当前结果将被删除。',
+      cancel: '取消', confirm: '确定', sexSuffix: { male: '男', female: '女' },
+      axes: { expression: '表情', face_shape: '脸型', physiognomy: '相学', style: '风格', atmosphere: '氛围' },
+      levels: { teto: 'Teto', semiTeto: '半-Teto', tegen: 'Tegen', semiEgen: '半-Egen', egen: 'Egen' },
     },
-
     vi: {
-      title: 'Điểm khuôn mặt của tôi',
-      radarExplain: '※ Điểm cao → Teto, điểm thấp → Egen',
-      retry: 'Thử lại',
-      share: 'Chia sẻ',
-      retryConfirm: 'Thử lại? Kết quả hiện tại sẽ bị xoá.',
-      cancel: 'Hủy',
-      confirm: 'OK',
-      sexSuffix: { male: 'Nam', female: 'Nữ' },
-      axes: {
-        expression: 'Biểu cảm',
-        face_shape: 'Hình mặt',
-        physiognomy: 'Tướng mạo',
-        style: 'Phong cách',
-        atmosphere: 'Bầu không khí',
-      },
-      levels: {
-        teto: 'Teto',
-        semiTeto: 'Bán-Teto',
-        tegen: 'Tegen',
-        semiEgen: 'Bán-Egen',
-        egen: 'Egen',
-      },
+      title: 'Điểm khuôn mặt của tôi', radarExplain: '※ Điểm cao → Teto, điểm thấp → Egen',
+      retry: 'Thử lại', share: 'Chia sẻ', retryConfirm: 'Thử lại? Kết quả hiện tại sẽ bị xoá.',
+      cancel: 'Hủy', confirm: 'OK', sexSuffix: { male: 'Nam', female: 'Nữ' },
+      axes: { expression: 'Biểu cảm', face_shape: 'Hình mặt', physiognomy: 'Tướng mạo', style: 'Phong cách', atmosphere: 'Bầu không khí' },
+      levels: { teto: 'Teto', semiTeto: 'Bán-Teto', tegen: 'Tegen', semiEgen: 'Bán-Egen', egen: 'Egen' },
     },
-   }
+  },
 };

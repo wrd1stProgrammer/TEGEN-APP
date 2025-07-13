@@ -2,8 +2,8 @@ import React from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TouchableOpacity,
+  StyleSheet,
   ScrollView,
   SafeAreaView,
   Platform,
@@ -37,7 +37,7 @@ const translations: Record<LangCode, {
     menu: [
       '공식 인스타그램 바로가기',
       '평점 및 리뷰 남기러 가기',
-      '앱 공유',
+      '테겐상 테스트 웹 버전 바로가기',
     ],
   },
   en: {
@@ -50,7 +50,7 @@ const translations: Record<LangCode, {
     menu: [
       'Go to official Instagram',
       'Leave a rating & review',
-      'Share the app',
+      'Tegen Face Test Web Version',
     ],
   },
   ja: {
@@ -63,7 +63,7 @@ const translations: Record<LangCode, {
     menu: [
       '公式Instagramへ',
       '評価とレビューを書く',
-      'アプリを共有',
+      'テゲンフェイステストウェブ版',
     ],
   },
   zh: {
@@ -76,7 +76,7 @@ const translations: Record<LangCode, {
     menu: [
       '前往官方Instagram',
       '留下评分和评论',
-      '分享应用',
+      '特根面孔测试网页版',
     ],
   },
   vi: {
@@ -89,7 +89,7 @@ const translations: Record<LangCode, {
     menu: [
       'Đến Instagram chính thức',
       'Để lại đánh giá & bình luận',
-      'Chia sẻ ứng dụng',
+      'Phiên bản web bài kiểm tra khuôn mặt Tegen',
     ],
   },
 };
@@ -99,10 +99,11 @@ export default function InfoScreen() {
   const lang = useAppSelector((state: any) => state.language.lang) as LangCode;
   const { title, rows, menu } = translations[lang];
 
-  // 첫 번째 메뉴(인스타그램) 링크만 지정
+  // 두 번째 메뉴(앱스토어)까지는 URL이 있고, 웹버전 URL은 실제 주소로 교체해주세요.
   const menuLinks = [
     'https://www.instagram.com/tegenai_official?igsh=MWQ0bHZnbmc5ZmlrOQ%3D%3D&utm_source=qr',
-    '', '', '',
+    'https://apps.apple.com/kr/app/%ED%85%8C%EA%B2%90%EC%83%81-%ED%85%8C%EC%8A%A4%ED%8A%B8/id6748128213',
+    'https://tegen-web.vercel.app/', // ← 실제 웹버전 주소로 바꿀 것
   ];
 
   const onPressMenu = (idx: number) => {
@@ -110,22 +111,19 @@ export default function InfoScreen() {
     if (url) {
       Linking.openURL(url).catch(err => console.error('링크 열기 오류', err));
     } else {
-      // TODO: 나머지 메뉴에 대한 처리 (공유, 리뷰 등)
+      // (필요 시) 공유, 리뷰 기능 처리
     }
   };
 
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={[styles.container, { paddingTop: safeTop + 24 }]}>
-        {/* 닫기 버튼 */}
         <TouchableOpacity style={[styles.closeBtn, { top: safeTop }]} onPress={goBack}>
           <Icon name="close-outline" size={34} color="#aaa" />
         </TouchableOpacity>
 
-        {/* 타이틀 */}
         <Text style={styles.title}>{title}</Text>
 
-        {/* 설명 카드 */}
         <View style={styles.card}>
           {rows.map((text, idx) => (
             <View style={styles.row} key={idx}>
@@ -140,7 +138,6 @@ export default function InfoScreen() {
           ))}
         </View>
 
-        {/* 하단 메뉴 */}
         <View style={styles.menuList}>
           {menu.map((label, idx) => (
             <TouchableOpacity
@@ -184,7 +181,13 @@ const styles = StyleSheet.create({
   },
   row: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 19 },
   rowIcon: { marginRight: 13, marginTop: 2 },
-  rowText: { flex: 1, color: '#222', fontSize: 15.7, fontWeight: '400', lineHeight: 21 },
+  rowText: {
+    flex: 1,
+    color: '#222',
+    fontSize: 15.7,
+    fontWeight: '400',
+    lineHeight: 21,
+  },
   menuList: {
     backgroundColor: '#fff',
     borderRadius: 12,
