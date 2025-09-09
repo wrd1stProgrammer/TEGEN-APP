@@ -1,7 +1,7 @@
 version: '3'
 services:
   back:
-    image: sikgates/tegen:latest  # ← 최신 Docker Hub 이미지
+    image: sikgates/tegen:latest
     container_name: tegen-back
     ports:
       - "5001:5001"
@@ -15,6 +15,24 @@ services:
       - app_network
     restart: always
 
+  db:
+    image: mariadb:11.4      
+    container_name: tegen-db  
+    restart: always
+    environment:
+
+      MYSQL_ROOT_PASSWORD: ktcpw123   
+      MYSQL_DATABASE: kakaotechcampus123
+      MYSQL_USER: kakaotechadmin123                     
+      MYSQL_PASSWORD: password1234         
+    volumes:
+      - mariadb_data:/var/lib/mysql 
+    networks:
+      - app_network
+
 networks:
   app_network:
     driver: bridge
+
+volumes:
+  mariadb_data:
