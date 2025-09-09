@@ -19,8 +19,9 @@ services:
     image: mariadb:11.4      
     container_name: tegen-db  
     restart: always
+    ports:
+      - "3306:3306"
     environment:
-
       MYSQL_ROOT_PASSWORD: ktcpw123   
       MYSQL_DATABASE: kakaotechcampus123
       MYSQL_USER: kakaotechadmin123                     

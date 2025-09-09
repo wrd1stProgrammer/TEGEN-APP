@@ -57,7 +57,7 @@ jobs:
 
             # 3. Docker Compose 실행  
             sudo docker-compose down
-            docker-compose rm -f
+            sudo docker-compose rm -f
             sudo docker-compose pull
             sudo docker-compose up -d 
             sudo docker image prune -f
