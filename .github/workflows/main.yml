@@ -3,7 +3,7 @@ name: Build and Deploy to EC2
 on:
   push:
     branches:
-      - Noserver  # main 브랜치 푸시 시 실행
+      - Noserver  
 
 jobs:
   build-and-push:
